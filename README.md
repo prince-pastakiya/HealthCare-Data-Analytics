@@ -1,6 +1,6 @@
-# HealthCare Analytics Dashboard Project
+# HealthCare Analytics Power BI Project
 
-Welcome to the **HealthCare Analytics Dashboard** repository! 🏥📊  
+Welcome to the **HealthCare Analytics Dashboard** 🏥📊  
 This Power BI project provides actionable insights into hospital operations, enabling informed decisions for resource allocation, patient care optimization, and departmental performance tracking.
 
 ---
