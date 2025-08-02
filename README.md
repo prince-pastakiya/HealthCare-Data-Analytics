@@ -44,7 +44,6 @@ Key features of the dashboard include:
 
 **Source**: Simulated healthcare datasets (CSV format)
 
---
 **Categories Tracked**:
   - Admission Type: Inpatient, Outpatient, Same-Day
   - Department: Emergency, Surgery, Cardiology, etc.
@@ -77,7 +76,6 @@ These insights directly support **hospital administration**, **capacity planning
 ### Business Goal  
 Help healthcare providers track key metrics, optimize resource use, and improve service efficiency with a reliable dashboard solution.
 
---
 ### Technical Goal
 - Model healthcare data into a clean, performant schema  
 - Create advanced measures using DAX  
