@@ -1,0 +1,62 @@
+Colors Used
+#605BFF
+#D0CFFC
+#FE8D1F
+
+Calendar = 
+    VAR MinYear = YEAR(MIN('Hospital ER'[Date]))
+    VAR MaxYear = YEAR(MAX('Hospital ER'[Date]))
+
+RETURN
+    ADDCOLUMNS(
+        FILTER(
+            CALENDARAUTO(),
+            YEAR([Date]) >= MinYear && YEAR([Date]) <= MaxYear
+        ),
+        "Year", YEAR([Date]),
+        "Quarter Number", INT(FORMAT([Date],"q")),
+        "Quarter", "Q" & INT(FORMAT([Date],"q")),
+        "Month", FORMAT([Date],"mmm"),
+        "Day", DAY([Date]),
+        "DayName", FORMAT([Date], "dddd"),
+        "Monthnum", MONTH([Date]),
+        "Weekday", FORMAT([Date], "ddd"),
+        "Weeknum", WEEKDAY([Date])
+    )
+	
+
+--------------------------------------------------------------------
+Busiest Day = 
+    CALCULATE(
+        MAXX(
+            TOPN(
+                1, // This argument specifies that you only want the top 1 result (the day with the highest patient count).
+                SUMMARIZE( // SUMMARIZE creates a temporary table where you summarize your data by 'Weekday'
+                    'Hospital ER', // The table containing your data (e.g., patient records).
+                    'Calendar'[DayName], // Group the data by 'Weekday' (e.g., Monday, Tuesday, etc.).
+                    "Total Patients", [Patients Visits] // For each weekday, calculate the total number of patients by referencing the 'Patients' measure.
+                ),
+                [Total Patients], // This specifies that you want to sort the summarized data based on the "Total Patients" column.
+                DESC // Sort the data in descending order, so the day with the most patients comes first.
+            ),
+            'Calendar'[DayName] // MAXX extracts the 'Weekday' from the top result (the day with the highest patient count).
+        )
+    )
+	
+--------------------------------------------------------------------	
+Busiest Time = 
+    CALCULATE(
+        MAXX(
+            TOPN(
+                1, // This argument specifies that you only want the top 1 result (the day with the highest patient count).
+                SUMMARIZE( // SUMMARIZE creates a temporary table where you summarize your data by 'Weekday'
+                    'Hospital ER', // The table containing your data (e.g., patient records).
+                    'Hospital ER'[Start of Hour], // Group the data by 'Weekday' (e.g., Monday, Tuesday, etc.).
+                    "Total Patients", [Patients Visits] // For each weekday, calculate the total number of patients by referencing the 'Patients' measure.
+                ),
+                [Total Patients], // This specifies that you want to sort the summarized data based on the "Total Patients" column.
+                DESC // Sort the data in descending order, so the day with the most patients comes first.
+            ),
+            FORMAT('Hospital ER'[Start of Hour],"h:mm AM/PM") // MAXX extracts the 'Weekday' from the top result (the day with the highest patient count).
+        )
+    )
