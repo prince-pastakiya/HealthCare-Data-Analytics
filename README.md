@@ -44,13 +44,13 @@ Key features of the dashboard include:
 
 **Source**: Simulated healthcare datasets (CSV format)
 
-**Categories Tracked**:
+- **Categories Tracked**:
   - Admission Type: Inpatient, Outpatient, Same-Day
   - Department: Emergency, Surgery, Cardiology, etc.
   - Patient Metrics: Admission Date, Stay Duration, Visit Count
   - Service Utilization: Beds Occupied, Discharges, Average Stay
--- 
-**Data Cleaning**:
+
+- **Data Cleaning**:
   - Removed duplicates and nulls  
   - Standardized formats  
   - Built relationships between tables for star schema modeling
